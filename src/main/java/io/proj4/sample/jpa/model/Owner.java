@@ -23,7 +23,13 @@ import javax.persistence.OneToOne;
 import org.hibernate.annotations.LazyToOne;
 import org.hibernate.annotations.LazyToOneOption;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 @Entity
+@Getter @Setter @ToString @EqualsAndHashCode(of = "id")
 public class Owner implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -52,99 +58,4 @@ public class Owner implements Serializable {
 	
 	@OneToMany(mappedBy = "owner", cascade = {CascadeType.PERSIST})
 	private List<Vehicle> vehicles = new ArrayList<Vehicle>();
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public LocalDate getBirth() {
-		return birth;
-	}
-
-	public Address getAddress() {
-		return address;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public Set<String> getPhones() {
-		return phones;
-	}
-
-	public List<Vehicle> getVehicles() {
-		return vehicles;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public void setBirth(LocalDate birth) {
-		this.birth = birth;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public void setPhones(Set<String> phones) {
-		this.phones = phones;
-	}
-
-	public void setVehicles(List<Vehicle> vehicles) {
-		this.vehicles = vehicles;
-	}
-
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder("Owner [")
-				.append("id=").append(id)
-				.append(", name=").append(name)
-				.append(", birth=").append(birth)
-				.append(", address=").append(address)
-				.append(", email=").append(email)
-				.append(", phones=").append(phones)
-				.append(", vehicles=").append(vehicles)
-				.append("]");
-		
-		return builder.toString();
-	}
-
-	@Override
-	public int hashCode() {
-		return 31 + (int) (id ^ (id >>> 32));
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		
-		if (obj == null)
-			return false;
-		
-		if (getClass() != obj.getClass())
-			return false;
-		
-		Owner other = (Owner) obj;
-		
-		if (id != other.id)
-			return false;
-		
-		return true;
-	}
 }

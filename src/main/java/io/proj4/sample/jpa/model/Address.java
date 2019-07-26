@@ -8,7 +8,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 @Entity
+@Getter @Setter @ToString
 public class Address implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -30,67 +35,6 @@ public class Address implements Serializable {
 	@OneToOne(optional = false)
 	@JoinColumn(name = "ownerId")
 	private Owner owner;
-
-	public String getAddress() {
-		return address;
-	}
-
-	public String getNumber() {
-		return number;
-	}
-
-	public String getNeighborhood() {
-		return neighborhood;
-	}
-
-	public String getCity() {
-		return city;
-	}
-
-	public String getState() {
-		return state;
-	}
-	
-	public Owner getOwner() {
-		return owner;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public void setNumber(String number) {
-		this.number = number;
-	}
-
-	public void setNeighborhood(String neighborhood) {
-		this.neighborhood = neighborhood;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	public void setState(String state) {
-		this.state = state;
-	}
-	
-	public void setOwner(Owner owner) {
-		this.owner = owner;
-	}
-
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder("Address [")
-				.append("address=").append(address)
-				.append(", number=").append(number)
-				.append(", neighborhood=").append(neighborhood)
-				.append(", city=").append(city)
-				.append(", state=").append(state)
-				.append("]");
-
-		return builder.toString();
-	}
 	
 	@Override
 	public int hashCode() {
